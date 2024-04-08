@@ -5,6 +5,7 @@ import requests
 import json
 import os
 from dotenv import load_dotenv
+import git
 
 
 bot = discord.Bot()
@@ -105,6 +106,17 @@ async def joke(ctx):
         print(f"Command 'joke' used by {ctx.author.name}")
     except Exception as e:
         await ctx.respond(f"An error occurred while sending the joke: {e}")
+
+
+        @bot.command(description="pulls the latest edits from GitHub for the entire folder")
+        async def pull(ctx):
+            try:
+                g = git.cmd.Git("/C:/Users/jarom/code/astolfo/disc-bot")
+                g.pull()
+                await ctx.respond("Successfully pulled the latest edits from GitHub.")
+                print(f"Command 'pull' used by {ctx.author.name}")
+            except Exception as e:
+                await ctx.respond(f"An error occurred while pulling the latest edits: {e}")
 
 @bot.event
 async def on_command_error(ctx, error):
