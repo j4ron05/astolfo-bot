@@ -108,15 +108,16 @@ async def joke(ctx):
         await ctx.respond(f"An error occurred while sending the joke: {e}")
 
 
-        @bot.command(description="pulls the latest edits from GitHub for the entire folder")
-        async def pull(ctx):
-            try:
-                g = git.cmd.Git("/C:/Users/jarom/code/astolfo/disc-bot")
-                g.pull()
-                await ctx.respond("Successfully pulled the latest edits from GitHub.")
-                print(f"Command 'pull' used by {ctx.author.name}")
-            except Exception as e:
-                await ctx.respond(f"An error occurred while pulling the latest edits: {e}")
+@bot.command(description="pulls the latest edits from GitHub for the entire folder")
+async def pull(ctx):
+    try:
+        g = git.cmd.Git("/C:/Users/jarom/code/astolfo/disc-bot")
+        g.pull()
+        await ctx.respond("Successfully pulled the latest edits from GitHub.")
+        print(f"Command 'pull' used by {ctx.author.name}")
+    except Exception as e:
+        await ctx.respond(f"An error occurred while pulling the latest edits: {e}")
+
 
 @bot.event
 async def on_command_error(ctx, error):
